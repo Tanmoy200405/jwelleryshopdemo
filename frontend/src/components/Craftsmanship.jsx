@@ -1,25 +1,16 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import './Craftsmanship.css';
 
 const Craftsmanship = () => {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-
   return (
-    <section id="story" className="craftsmanship section-padding bg-champagne text-charcoal" ref={sectionRef}>
+    <section id="story" className="craftsmanship section-padding bg-champagne text-charcoal">
       <div className="container craftsmanship-container">
         <div className="craft-content">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
           >
             <p className="subtitle text-charcoal">The Art Of Creation</p>
@@ -31,24 +22,23 @@ const Craftsmanship = () => {
           </motion.div>
         </div>
         
-        <div className="craft-images">
+        <div className="craft-images-grid">
           <motion.div 
-            className="craft-img-wrapper img-1" 
-            style={{ y: y1 }}
-            initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
-            whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+            className="craft-img-box" 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
           >
             <img src="/luxury_necklace_1_1782116340464.png" alt="Craftsmanship detail" />
           </motion.div>
           <motion.div 
-            className="craft-img-wrapper img-2" 
-            style={{ y: y2 }}
-            initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
-            whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+            className="craft-img-box" 
+            style={{ marginTop: '40px' }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
+            transition={{ duration: 1.5, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
           >
             <img src="/luxury_ring_1_1782116354957.png" alt="Artisan working" />
           </motion.div>

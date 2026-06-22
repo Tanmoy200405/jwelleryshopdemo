@@ -1,56 +1,40 @@
 .craftsmanship {
-  position: relative;
   background-color: var(--color-champagne);
 }
 
 .craftsmanship-container {
   display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: 100px;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
   align-items: center;
 }
 
 .craft-desc {
   margin: 0;
-  max-width: 500px;
   color: rgba(17, 17, 17, 0.75);
 }
 
-.craft-images {
-  position: relative;
-  height: 900px;
+.craft-images-grid {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
 }
 
-.craft-img-wrapper {
-  position: absolute;
+.craft-img-box {
+  flex: 1;
   overflow: hidden;
+  aspect-ratio: 3/4;
 }
 
-.craft-img-wrapper img {
+.craft-img-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.craft-img-wrapper:hover img {
+.craft-img-box:hover img {
   transform: scale(1.05);
-}
-
-.img-1 {
-  width: 65%;
-  height: 70%;
-  top: 5%;
-  left: 0;
-  z-index: 2;
-}
-
-.img-2 {
-  width: 60%;
-  height: 60%;
-  bottom: 0%;
-  right: 0;
-  z-index: 1;
 }
 
 @media (max-width: 1024px) {
@@ -58,7 +42,15 @@
     grid-template-columns: 1fr;
     gap: 60px;
   }
-  .craft-images {
-    height: 600px;
+}
+
+@media (max-width: 768px) {
+  .craft-images-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .craft-img-box {
+    width: 100%;
+    margin-top: 0 !important;
   }
 }
