@@ -37,7 +37,7 @@ const Craftsmanship = () => {
             style={{ y: y1 }}
             initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
             whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
           >
             <img src="/luxury_necklace_1_1782116340464.png" alt="Craftsmanship detail" />
@@ -47,7 +47,7 @@ const Craftsmanship = () => {
             style={{ y: y2 }}
             initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
             whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true }}
             transition={{ duration: 1.5, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
           >
             <img src="/luxury_ring_1_1782116354957.png" alt="Artisan working" />

@@ -12,6 +12,10 @@
   gap: 40px;
 }
 
+.section-header {
+  margin-bottom: 0;
+}
+
 .awwwards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
