@@ -5,49 +5,42 @@ import './Hero.css';
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const textRef = useRef(null);
+  const titleRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
 
-  const yPos = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const yPos = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   useEffect(() => {
-    // Floating particles effect
-    const particles = document.querySelectorAll('.particle');
-    particles.forEach(p => {
-      gsap.to(p, {
-        y: "random(-100, 100)",
-        x: "random(-100, 100)",
-        rotation: "random(0, 360)",
-        duration: "random(5, 10)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
+    // GSAP staggering text animation
+    if (titleRef.current) {
+      const text = titleRef.current;
+      text.innerHTML = text.textContent.replace(/\S/g, "<span class='letter' style='display:inline-block; opacity:0; transform:translateY(40px);'>$&</span>");
+
+      gsap.to('.hero-title .letter', {
+        y: 0,
+        opacity: 1,
+        duration: 1.4,
+        ease: "power3.out",
+        stagger: 0.04,
+        delay: 1
       });
-    });
+    }
   }, []);
 
   return (
     <section className="hero" ref={heroRef}>
-      {/* Particles */}
-      <div className="particles-container">
-        {[...Array(15)].map((_, i) => (
-          <div key={i} className="particle" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            width: `${Math.random() * 6 + 2}px`,
-            height: `${Math.random() * 6 + 2}px`
-          }}></div>
-        ))}
-      </div>
-
       <motion.div 
-        className="hero-image-wrapper"
-        style={{ y: yPos }}
+        className="hero-image-wrapper mask-hero"
+        style={{ y: yPos, scale }}
+        initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
+        animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+        transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
       >
         <div className="hero-overlay"></div>
         <img src="/luxury_necklace_1_1782116340464.png" alt="Luxury Necklace" className="hero-img" />
@@ -56,38 +49,30 @@ const Hero = () => {
       <motion.div 
         className="hero-content"
         style={{ opacity }}
-        ref={textRef}
       >
         <motion.p 
-          className="hero-subtitle text-gold"
+          className="subtitle text-gold hero-subtitle"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 1, delay: 0.8, ease: [0.19, 1, 0.22, 1] }}
         >
-          Exclusive Collection
+          High Jewellery Collection
         </motion.p>
-        <motion.h1 
+        <h1 
           className="heading-xl text-ivory hero-title"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          ref={titleRef}
+          style={{ whiteSpace: 'pre-line' }}
         >
-          Handcrafted Jewellery<br/>Designed To Be Remembered
-        </motion.h1>
-        <motion.p 
-          className="body-lg text-ivory hero-desc"
+          Artistry In
+          Every Detail
+        </h1>
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
+          transition={{ duration: 1.5, delay: 2 }}
+          style={{ marginTop: '3rem' }}
         >
-          Timeless pieces crafted with passion, elegance, and attention to every detail.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <a href="#collection" className="btn btn-gold btn-magnetic">Explore Collection</a>
+          <a href="#collection" className="btn btn-gold btn-magnetic">Discover The Collection</a>
         </motion.div>
       </motion.div>
     </section>

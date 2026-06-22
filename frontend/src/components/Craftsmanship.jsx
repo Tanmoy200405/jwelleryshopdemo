@@ -9,8 +9,8 @@ const Craftsmanship = () => {
     offset: ["start end", "end start"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
   return (
     <section id="story" className="craftsmanship section-padding bg-champagne text-charcoal" ref={sectionRef}>
@@ -20,22 +20,36 @@ const Craftsmanship = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
           >
-            <p className="subtitle">The Art Of Creation</p>
-            <h2 className="heading-lg">Meticulously Crafted <br/> For Eternity</h2>
+            <p className="subtitle text-charcoal">The Art Of Creation</p>
+            <h2 className="heading-lg text-gradient-gold" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>Meticulously Crafted <br/> For Eternity</h2>
             <p className="body-lg craft-desc">
               Every piece in our collection is born from a passion for perfection. Our master artisans blend traditional techniques with modern innovation, ensuring that each detail is flawlessly executed. We source only the finest ethical materials to create jewellery that not only looks breathtaking but carries a legacy.
             </p>
-            <a href="/story" className="btn btn-outline">Discover Our Story</a>
+            <a href="/story" className="btn btn-outline" style={{ marginTop: '2rem' }}>Discover Our Story</a>
           </motion.div>
         </div>
         
         <div className="craft-images">
-          <motion.div className="craft-img-wrapper img-1" style={{ y: y1 }}>
+          <motion.div 
+            className="craft-img-wrapper img-1" 
+            style={{ y: y1 }}
+            initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
+            whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
+          >
             <img src="/luxury_necklace_1_1782116340464.png" alt="Craftsmanship detail" />
           </motion.div>
-          <motion.div className="craft-img-wrapper img-2" style={{ y: y2 }}>
+          <motion.div 
+            className="craft-img-wrapper img-2" 
+            style={{ y: y2 }}
+            initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
+            whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1.5, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
+          >
             <img src="/luxury_ring_1_1782116354957.png" alt="Artisan working" />
           </motion.div>
         </div>
