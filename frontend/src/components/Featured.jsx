@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import './Featured.css';
 
 const products = [
@@ -8,79 +7,48 @@ const products = [
     title: 'Aethelgard Diamond Ring',
     price: '$4,200',
     image: '/luxury_ring_1_1782116354957.png',
-    desc: 'Exquisite 18k gold with a brilliant cut diamond.',
-    colSpan: 'col-span-2',
-    aspect: 'aspect-landscape'
+    desc: 'Exquisite 18k gold with a brilliant cut diamond.'
   },
   {
     id: 2,
     title: 'Pearl Symphony Earrings',
     price: '$2,850',
     image: '/luxury_earrings_1_1782116367696.png',
-    desc: 'Freshwater pearls suspended in intricate gold.',
-    colSpan: 'col-span-1',
-    aspect: 'aspect-portrait'
+    desc: 'Freshwater pearls suspended in intricate gold.'
   },
   {
     id: 3,
     title: 'Eternity Gold Bracelet',
     price: '$5,500',
     image: '/luxury_bracelet_1_1782116380216.png',
-    desc: 'A seamless band of gold, crafted for forever.',
-    colSpan: 'col-span-1',
-    aspect: 'aspect-square'
+    desc: 'A seamless band of gold, crafted for forever.'
   }
 ];
 
 const Featured = () => {
   return (
-    <section id="collection" className="featured section-padding bg-charcoal text-ivory">
+    <section id="collection" className="featured section-padding bg-ivory text-charcoal">
       <div className="container">
-        <div className="featured-header-flex">
-          <motion.div 
-            className="section-header"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-          >
-            <p className="subtitle text-gold">Exclusive Selection</p>
-            <h2 className="heading-lg" style={{ marginTop: '1rem' }}>Curated Masterpieces</h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1], delay: 0.2 }}
-            className="featured-desc-wrap"
-          >
-            <p className="body-lg text-ivory" style={{ opacity: 0.7, maxWidth: '400px' }}>
-              Explore our most sought-after designs. Each piece is a testament to our dedication to unparalleled craftsmanship and timeless beauty.
-            </p>
-          </motion.div>
+        <div className="section-header text-center">
+          <p className="subtitle text-gold">Curated For You</p>
+          <h2 className="heading-md" style={{ marginTop: '1rem' }}>Featured Collection</h2>
         </div>
 
-        <div className="awwwards-grid">
+        <div className="featured-grid">
           {products.map((product, index) => (
-            <motion.div 
-              className={`awwwards-card ${product.colSpan}`}
+            <div 
+              className={`product-card ${index % 2 !== 0 ? 'offset-card' : ''}`}
               key={product.id}
-              initial={{ opacity: 0, y: 100, clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
-              whileInView={{ opacity: 1, y: 0, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1.5, delay: index * 0.3, ease: [0.19, 1, 0.22, 1] }}
             >
-              <div className={`card-img-container ${product.aspect}`}>
-                <img src={product.image} alt={product.title} className="card-img" />
-                <div className="card-hover-overlay">
-                  <div className="card-hover-content">
-                    <p className="subtitle text-gold" style={{ marginBottom: '1rem' }}>View Details</p>
-                    <h3 className="card-title text-ivory">{product.title}</h3>
-                    <p className="card-price text-champagne">{product.price}</p>
-                  </div>
-                </div>
+              <div className="card-image-wrapper">
+                <img src={product.image} alt={product.title} className="product-img" />
               </div>
-            </motion.div>
+              <div className="card-info">
+                <p className="subtitle text-gold" style={{ marginBottom: '1rem' }}>High Jewellery</p>
+                <h3 className="card-title">{product.title}</h3>
+                <p className="card-price">{product.price}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
