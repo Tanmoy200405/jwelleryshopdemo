@@ -1,0 +1,61 @@
+.craftsmanship {
+  position: relative;
+  overflow: hidden;
+}
+
+.craftsmanship-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.craft-desc {
+  margin: 2rem 0;
+  max-width: 500px;
+  opacity: 0.8;
+}
+
+.craft-images {
+  position: relative;
+  height: 800px;
+}
+
+.craft-img-wrapper {
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.craft-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-1 {
+  width: 60%;
+  height: 60%;
+  top: 10%;
+  left: 0;
+  z-index: 2;
+}
+
+.img-2 {
+  width: 55%;
+  height: 55%;
+  bottom: 5%;
+  right: 0;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .craftsmanship-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .craft-images {
+    height: 500px;
+    margin-top: 40px;
+  }
+}
